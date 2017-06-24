@@ -102,8 +102,6 @@ public class SwaggerOperationBuilderTest {
         assertTrue(swaggerOperationBuilder.getOperation().getParameters().get(2).getRequired());
     }
 
-
-
     @Test
     public void testPathParam() throws Exception {
         SwaggerOperationBuilder swaggerOperationBuilder =
@@ -150,5 +148,13 @@ public class SwaggerOperationBuilderTest {
                 new SwaggerOperationBuilder("/{foo}");
 
         swaggerOperationBuilder.pathParam("bar", "path-param description");
+    }
+
+    @Test
+    public void testExampleBody() {
+        SwaggerOperationBuilder swaggerOperationBuilder =
+                new SwaggerOperationBuilder("/foo");
+
+        swaggerOperationBuilder.bodyParam("foo", "Foo is foo").example("application/json", new String("hello"));
     }
 }

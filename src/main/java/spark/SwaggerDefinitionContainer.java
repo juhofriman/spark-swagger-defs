@@ -36,6 +36,4 @@ public class SwaggerDefinitionContainer {
         return path;
     }
 
-    public void path(String pathString, Path path) {
-    }
 }
