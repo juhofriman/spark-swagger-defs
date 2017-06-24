@@ -19,10 +19,6 @@ public class SwaggerOperationBuilder {
         this.pathUri = pathUri;
     }
 
-    public String getPathUri() {
-        return pathUri;
-    }
-
     public Operation getOperation() {
         return operation;
     }
