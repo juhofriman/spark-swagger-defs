@@ -19,6 +19,12 @@ public class SwaggeredSpark {
         });
     }
 
+    public static void path(String path, RouteGroup routes) {
+        sdc.pushPath(path);
+        Spark.path(path, routes);
+        sdc.popPath();
+    }
+
     public static void get(String path, SwaggerWrappedRoute route) {
         SwaggerOperationBuilder operationBuilder = new SwaggerOperationBuilder(path);
         Spark.get(path, route.executeSwaggeredRoute(operationBuilder));
