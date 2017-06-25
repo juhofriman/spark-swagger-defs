@@ -14,15 +14,15 @@ This is a [Spark](http://sparkjava.com/) utility extension for adding [Swagger d
 
 ## Initial idea
 
-Initial idea is that we can wrap spark routes with "DocumentationBuilder" which uses builder for defining swagger documentation
-for current route and then returns the actual handler.
+Initial idea is that we can wrap spark routes with "DocumentationBuilder", which uses builder for defining swagger documentation
+for current route and then returns the actual handler. This means that using this would be wrapping already created route lambdas
+inside `(operation) -> { return (req, res) -> { // original route}}`.
 
 ```java
 get("/info", (operation) -> {
     // describe GET operation in /info
-    operation.produces("application/json")
-            .queryParam("foo", "Foo is a foo and is optional").example("one-two-foo")
-            .required().headerParam("api-key", "Correct api key").example("9192838139131");
+    operation.produces("text/plain")
+            .queryParam("foo", "Foo is a foo and is optional").example("one-two-foo");
     // return the actual handler
     return (req, res) -> {
         return "Here's some info";
@@ -36,10 +36,10 @@ Current implementation supports sparks `path()` route builder as well.
 
 ```java
 path("/api", () -> {
-    get("/person", (operation) -> {
+    get("/person/{id}", (operation) -> {
         // describe GET operation in /api/person
         operation.produces("application/json")
-                .queryParam("personId", "Id of the person").example("12")
+                .pathParam("id", "Id of the person").example("12")
                 .required().headerParam("api-key", "Correct api key").example("9192838139131");
         // return the actual handler
         return (req, res) -> {
