@@ -61,6 +61,10 @@ path("/api", () -> {
 });
 ```
 
+Serving swagger json is fairly straight forward. Using `serveSwagger("/swagger.json");` call from SwaggeredSpark, it is
+simply server from http://localhost:4567/swagger.json. We do not want to define default because it would most likely go
+wrong. Actually one could put swagger docs to Amazon s3 on boot or something similar.
+
 ## Roadmap
 
 1. Precise, simple and readable swagger documentation builder. On top of clean swagger documentation the code is also documentation and should be as readble as possible.
